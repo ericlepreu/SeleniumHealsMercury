@@ -12,9 +12,16 @@ import org.junit.Before;
 import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.ie.InternetExplorerDriver;
 
 public abstract class BaseTest {
-	protected WebDriver driver = new ChromeDriver();
+	//protected WebDriver driver = new ChromeDriver();
+	protected WebDriver driver = new InternetExplorerDriver();
+	//protected WebDriver driver = new FirefoxDriver();
+	
+	
+	
 	protected static String sharedLocation = "c:/Eclipse/AutomatedTests";
 	
 	protected static Logger logger;
@@ -26,7 +33,7 @@ public abstract class BaseTest {
 	
 	@BeforeClass
 	public static void setUpClass() throws Exception {
-		System.setProperty("webdriver.chrome.driver", "C:\\Eclipse\\Selenium\\ChromeDriver2.29\\chromedriver.exe");
+		//System.setProperty("webdriver.chrome.driver", "C:\\Eclipse\\SeleniumGRID\\chromedriver.exe");
 		
 		//load properties file
 		prop.load(new FileInputStream("config.properties"));
@@ -44,7 +51,10 @@ public abstract class BaseTest {
 		//Determine App Domain and Selenium Grid instance
 		setupAppDomain();
 		
-		
+		//Initialize the Selenium Grid
+		//System.setProperty("webdriver.chrome.driver", "C:\\Eclipse\\SeleniumGRID\\chromedriver.exe");
+		System.setProperty("webdriver.internetexplorer.driver", "C:\\Eclipse\\SeleniumGRID\\IEDriverServer.exe");
+		//System.setProperty("webdriver.gecko.driver", "C:\\Eclipse\\SeleniumGRID\\geckodriver.exe");
 	}
 	
 	@Before

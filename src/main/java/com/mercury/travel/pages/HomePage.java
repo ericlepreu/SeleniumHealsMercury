@@ -34,7 +34,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	@Override
 	protected void isLoaded() throws Error {
 		String url = driver.getCurrentUrl();
-	    assertTrue("Not on the issue entry page: " + url, url.endsWith("mercurywelcome.php"));
+	    assertTrue("Not on the MercuryWelcome Home page: " + url, url.endsWith("mercurywelcome.php"));
 	}
 
 	@Override

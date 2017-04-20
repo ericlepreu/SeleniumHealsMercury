@@ -92,7 +92,7 @@ public class CreateReservationTests extends BaseTest {
 			Assert.assertTrue("FlightC Confirmation # label NOT displayed", pgConfirmation.isFlightConfirmationNoDisplayed());
 			pgConfirmation.logout();
 		} catch (Exception e) {
-			fail("Failed with error: " + e.getMessage());
+			throw new Exception("Failed with error: " + e.getMessage(), e);
 		}
 	}
 	

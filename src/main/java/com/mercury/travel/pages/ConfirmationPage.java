@@ -9,6 +9,8 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 
+import com.mercury.travel.utils.BaseTest;
+
 public class ConfirmationPage extends LoadableComponent {
 	public WebDriver driver;
 	
@@ -33,6 +35,7 @@ public class ConfirmationPage extends LoadableComponent {
 
 	@Override
 	protected void load() {
+		BaseTest.getLogger().info("== Loading Confirmation Page ==");
 		driver.get("http://newtours.demoaut.com/mercurypurchase.php");		
 	}	
 
@@ -47,6 +50,7 @@ public class ConfirmationPage extends LoadableComponent {
 	}
 	
 	public void logout() {
+		BaseTest.getLogger().info("========= Logging out ===============");
 		btnLogOut.click();
 	}
 }

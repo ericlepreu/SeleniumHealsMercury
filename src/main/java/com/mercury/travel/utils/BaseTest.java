@@ -14,12 +14,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
+import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
 public abstract class BaseTest {
-	//protected WebDriver driver = new ChromeDriver();
-	protected WebDriver driver = new InternetExplorerDriver();
+	protected static WebDriver driver = new ChromeDriver();
+	//protected WebDriver driver = new InternetExplorerDriver();
 	//protected WebDriver driver = new FirefoxDriver();
-	
+	//protected static WebDriver driver = new PhantomJSDriver();
 	
 	
 	protected static String sharedLocation = "c:/Eclipse/AutomatedTests";
@@ -52,9 +53,15 @@ public abstract class BaseTest {
 		setupAppDomain();
 		
 		//Initialize the Selenium Grid
-		//System.setProperty("webdriver.chrome.driver", "C:\\Eclipse\\SeleniumGRID\\chromedriver.exe");
-		System.setProperty("webdriver.internetexplorer.driver", "C:\\Eclipse\\SeleniumGRID\\IEDriverServer.exe");
+		System.setProperty("webdriver.chrome.driver", "C:\\Eclipse\\SeleniumGRID\\chromedriver.exe");
+		//System.setProperty("webdriver.internetexplorer.driver", "C:\\Eclipse\\SeleniumGRID\\IEDriverServer.exe");
 		//System.setProperty("webdriver.gecko.driver", "C:\\Eclipse\\SeleniumGRID\\geckodriver.exe");
+		//driver.setJavascriptEnabled(true);
+		
+		//System.setProperty("phantomjs.binary.path", "C:\\Eclipse\\SeleniumGRID\\phantomjs.exe");
+		
+		
+		
 	}
 	
 	@Before
@@ -148,5 +155,13 @@ public abstract class BaseTest {
 		} else {
 			throw new Exception("Error: System was not set to one of the legit values: null, '', QA or SRT");
 		}
+	}
+	
+	public static WebDriver getDriver() {
+		return driver;
+	}
+	
+	public static Logger getLogger() {
+		return logger;
 	}
 }

@@ -10,6 +10,8 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 
+import com.mercury.travel.utils.BaseTest;
+
 public class ReservationPage2 extends LoadableComponent<ReservationPage2> {
 	public WebDriver driver;
 	
@@ -32,11 +34,13 @@ public class ReservationPage2 extends LoadableComponent<ReservationPage2> {
 
 	@Override
 	protected void load() {
+		BaseTest.getLogger().info("== Loading Reservation page 2 ==");
 		driver.get("http://newtours.demoaut.com/mercuryreservation2.php");		
 	}
 	
 	public void selectFlight() throws Exception {		
 		try {
+			BaseTest.getLogger().info("== Clicking Continue btn ==");
 			btnContinue.click();
 		} catch (Exception e) {
 			throw new Exception("Unable to click on Select Flight button: " + e.getMessage(), e);

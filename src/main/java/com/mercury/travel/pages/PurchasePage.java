@@ -10,6 +10,8 @@ import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.LoadableComponent;
 
+import com.mercury.travel.utils.BaseTest;
+
 public class PurchasePage extends LoadableComponent<PurchasePage> {
 	public WebDriver driver;
 	
@@ -45,11 +47,13 @@ public class PurchasePage extends LoadableComponent<PurchasePage> {
 
 	@Override
 	protected void load() {
+		BaseTest.getLogger().info("== Loading Purchase page ==");
 		driver.get("http://newtours.demoaut.com/mercurypurchase.php");		
 	}
 	
 	public void enterPassengerInfo(String firstName, String lastName) throws Exception {
 		try {
+			BaseTest.getLogger().info("== Entering Passenger info ==");
 			txtFirstName.sendKeys(firstName);
 			txtLastName.sendKeys(lastName);
 		} catch (Exception e) {
@@ -59,6 +63,7 @@ public class PurchasePage extends LoadableComponent<PurchasePage> {
 	
 	public void enterCCInfo(String ccNo) throws Exception {
 		try {
+			BaseTest.getLogger().info("== Entering CC info ==");
 			txtCCNo.sendKeys(ccNo);
 		} catch (Exception e) {
 			throw new Exception("Unable to enter CC No: " + e.getMessage(), e);
@@ -67,6 +72,7 @@ public class PurchasePage extends LoadableComponent<PurchasePage> {
 	
 	public void securePurchase() throws Exception {
 		try {
+			BaseTest.getLogger().info("== Clicking on Secure Purchase button ==");
 			btnSecurePurchase.click();
 		} catch (Exception e) {
 			throw new Exception("Unable to enter click on Secure Purchase btn " + e.getMessage(), e);

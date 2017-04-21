@@ -14,6 +14,7 @@ import org.openqa.selenium.support.ui.Select;
 import com.mercury.travel.builders.FlightDetails;
 import com.mercury.travel.controls.ListControl;
 import com.mercury.travel.enums.ServiceClass;
+import com.mercury.travel.utils.BaseTest;
 
 public class ReservationPage extends LoadableComponent<ReservationPage> {
 	public WebDriver driver;
@@ -74,6 +75,7 @@ public class ReservationPage extends LoadableComponent<ReservationPage> {
 
 	@Override
 	protected void load() {
+		BaseTest.getLogger().info("== Loading Reservation page ==");
 		driver.get("http://newtours.demoaut.com/mercuryreservation.php");		
 	}
 	
@@ -91,6 +93,7 @@ public class ReservationPage extends LoadableComponent<ReservationPage> {
 			String toMonth = flightDetails.getToMonth();
 			String toDay = flightDetails.getToDay();
 			
+			BaseTest.getLogger().info("== Editing Flight Details ==");
 			if(isRoundTrip && rdoOneWay.isSelected()) {
 				rdoRoundTrip.click();
 			}
@@ -112,6 +115,7 @@ public class ReservationPage extends LoadableComponent<ReservationPage> {
 	
 	public void editPreferences(ServiceClass serviceClass, String airline) throws Exception {
 		try {
+			BaseTest.getLogger().info("== Editing Preferences ==");
 			switch(serviceClass) {
 				case Coach: rdoEconomy.click();
 				case Business: rdoBusiness.click();
@@ -128,6 +132,7 @@ public class ReservationPage extends LoadableComponent<ReservationPage> {
 	
 	public void clickContinue() throws Exception {		
 		try {
+			BaseTest.getLogger().info("== Clicking on Continue btn ==");
 			btnContinue.click();
 		} catch (Exception e) {
 			throw new Exception("Unable to click on the Contineu button: " + e.getMessage(), e);

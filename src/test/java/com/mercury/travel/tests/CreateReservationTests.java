@@ -39,11 +39,13 @@ public class CreateReservationTests extends BaseTest {
 	@Test
 	public void loginTest() throws Exception {		
 		try {
+			BaseTest.getLogger().info("============ Starting loginTest Steps ===========");
 			pgHome = new HomePage(driver).get();
 			pgHome.login();
 			
 			WebElement lblFlightFinder = driver.findElement(By.cssSelector("img[src*='flightfinder']"));
 			assertTrue("Checking FlightFinder page is displayed", lblFlightFinder.isDisplayed());
+			BaseTest.getLogger().info("========= Test Completed Successfully ===============");
 		} catch (Exception e) {
 			fail("Failed with error: " + e.getMessage());
 		}
@@ -91,6 +93,7 @@ public class CreateReservationTests extends BaseTest {
 			
 			Assert.assertTrue("FlightC Confirmation # label NOT displayed", pgConfirmation.isFlightConfirmationNoDisplayed());
 			pgConfirmation.logout();
+			BaseTest.getLogger().info("========= Test Completed Successfully ===============");
 		} catch (Exception e) {
 			throw new Exception("Failed with error: " + e.getMessage(), e);
 		}

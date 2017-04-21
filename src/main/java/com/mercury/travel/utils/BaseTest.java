@@ -10,6 +10,8 @@ import org.apache.log4j.xml.DOMConfigurator;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.junit.Rule;
+import org.junit.rules.TestName;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -17,10 +19,11 @@ import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
 
 public abstract class BaseTest {
-	protected static WebDriver driver = new ChromeDriver();
-	//protected WebDriver driver = new InternetExplorerDriver();
-	//protected WebDriver driver = new FirefoxDriver();
+	//protected static WebDriver driver = new ChromeDriver();
+	//protected static WebDriver driver = new InternetExplorerDriver();
 	//protected static WebDriver driver = new PhantomJSDriver();
+	protected static WebDriver driver = new FirefoxDriver();
+	
 	
 	
 	protected static String sharedLocation = "c:/Eclipse/AutomatedTests";
@@ -31,6 +34,8 @@ public abstract class BaseTest {
 	protected static String envir;
 	protected static String appDomain;
 	
+	//allows Junit to get the current test name that is executing, using the method: objTestName.getMethodName();
+	@Rule public TestName objTestName = new TestName();
 	
 	@BeforeClass
 	public static void setUpClass() throws Exception {
@@ -55,10 +60,14 @@ public abstract class BaseTest {
 		//Initialize the Selenium Grid
 		System.setProperty("webdriver.chrome.driver", "C:\\Eclipse\\SeleniumGRID\\chromedriver.exe");
 		//System.setProperty("webdriver.internetexplorer.driver", "C:\\Eclipse\\SeleniumGRID\\IEDriverServer.exe");
-		//System.setProperty("webdriver.gecko.driver", "C:\\Eclipse\\SeleniumGRID\\geckodriver.exe");
-		//driver.setJavascriptEnabled(true);
-		
 		//System.setProperty("phantomjs.binary.path", "C:\\Eclipse\\SeleniumGRID\\phantomjs.exe");
+		
+		
+		//4/20/17 - firefox/gecko/marionette running ointo known issue: Marionette	INFO	New connections will no longer be accepted
+		//System.setProperty("webdriver.gecko.driver", "C:\\Eclipse\\SeleniumGRID\\geckodriver.exe");
+		//driver.setJavascriptEnabled(true);		
+		
+		
 		
 		
 		

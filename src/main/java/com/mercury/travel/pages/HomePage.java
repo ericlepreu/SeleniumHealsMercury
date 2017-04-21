@@ -15,6 +15,7 @@ import com.mercury.travel.utils.BaseTest;
 
 public class HomePage extends LoadableComponent<HomePage> {
 	public WebDriver driver;
+	Logger logger = BaseTest.getLogger();
 	
 	@FindBy(how = How.NAME, using = "userName")
 	public WebElement txtUserName;
@@ -31,7 +32,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	public HomePage(WebDriver driver) {
 		this.driver = driver;	
 		//driver.get("http://newtours.demoaut.com/mercurywelcome.php");		
-		PageFactory.initElements(driver, this);
+		PageFactory.initElements(driver, this);		
 	}
 
 	@Override
@@ -48,7 +49,7 @@ public class HomePage extends LoadableComponent<HomePage> {
 	public void login() throws Exception {
 		
 		try {
-			BaseTest.getLogger().info("Logging in...");
+			logger.info("======= Logging in... =============");
 			txtUserName.sendKeys("mercury");
 			txtPwd.sendKeys("mercury");
 			btnSignIn.click();			

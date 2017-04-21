@@ -2,6 +2,7 @@ package com.mercury.travel.pages;
 
 import static org.junit.Assert.assertTrue;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,6 +14,7 @@ import com.mercury.travel.utils.BaseTest;
 
 public class ConfirmationPage extends LoadableComponent {
 	public WebDriver driver;
+	Logger logger = BaseTest.getLogger();
 	
 	@FindBy(how = How.CSS, using = ".frame_header_info table td b > font")
 	public WebElement lblFlightConfirmation;
@@ -35,7 +37,7 @@ public class ConfirmationPage extends LoadableComponent {
 
 	@Override
 	protected void load() {
-		BaseTest.getLogger().info("== Loading Confirmation Page ==");
+		logger.info("== Loading Confirmation Page ==");
 		driver.get("http://newtours.demoaut.com/mercurypurchase.php");		
 	}	
 

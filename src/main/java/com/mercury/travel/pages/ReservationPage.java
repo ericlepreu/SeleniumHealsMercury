@@ -2,6 +2,7 @@ package com.mercury.travel.pages;
 
 import static org.junit.Assert.assertTrue;
 
+import org.apache.log4j.Logger;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,6 +19,7 @@ import com.mercury.travel.utils.BaseTest;
 
 public class ReservationPage extends LoadableComponent<ReservationPage> {
 	public WebDriver driver;
+	Logger logger = BaseTest.getLogger();
 	
 	@FindBy(how = How.CSS, using = "input[name='tripType'][value='roundtrip']")
 	public WebElement rdoRoundTrip;
@@ -75,7 +77,7 @@ public class ReservationPage extends LoadableComponent<ReservationPage> {
 
 	@Override
 	protected void load() {
-		BaseTest.getLogger().info("== Loading Reservation page ==");
+		logger.info("== Loading Reservation page ==");
 		driver.get("http://newtours.demoaut.com/mercuryreservation.php");		
 	}
 	
@@ -93,7 +95,7 @@ public class ReservationPage extends LoadableComponent<ReservationPage> {
 			String toMonth = flightDetails.getToMonth();
 			String toDay = flightDetails.getToDay();
 			
-			BaseTest.getLogger().info("== Editing Flight Details ==");
+			logger.info("== Editing Flight Details ==");
 			if(isRoundTrip && rdoOneWay.isSelected()) {
 				rdoRoundTrip.click();
 			}
@@ -115,7 +117,7 @@ public class ReservationPage extends LoadableComponent<ReservationPage> {
 	
 	public void editPreferences(ServiceClass serviceClass, String airline) throws Exception {
 		try {
-			BaseTest.getLogger().info("== Editing Preferences ==");
+			logger.info("== Editing Preferences ==");
 			switch(serviceClass) {
 				case Coach: rdoEconomy.click();
 				case Business: rdoBusiness.click();
@@ -132,10 +134,10 @@ public class ReservationPage extends LoadableComponent<ReservationPage> {
 	
 	public void clickContinue() throws Exception {		
 		try {
-			BaseTest.getLogger().info("== Clicking on Continue btn ==");
+			logger.info("== Clicking on Continue btn ==");
 			btnContinue.click();
 		} catch (Exception e) {
-			throw new Exception("Unable to click on the Contineu button: " + e.getMessage(), e);
+			throw new Exception("Unable to click on the Continue button: " + e.getMessage(), e);
 		}
 	}
 }

@@ -39,13 +39,13 @@ public class CreateReservationTests extends BaseTest {
 	@Test
 	public void loginTest() throws Exception {		
 		try {
-			BaseTest.getLogger().info("============ Starting loginTest Steps ===========");
+			logger.info("============ Starting Test: " + objTestName.getMethodName() + " ===========");
 			pgHome = new HomePage(driver).get();
 			pgHome.login();
 			
 			WebElement lblFlightFinder = driver.findElement(By.cssSelector("img[src*='flightfinder']"));
 			assertTrue("Checking FlightFinder page is displayed", lblFlightFinder.isDisplayed());
-			BaseTest.getLogger().info("========= Test Completed Successfully ===============");
+			logger.info("========= Test Completed Successfully ===============");
 		} catch (Exception e) {
 			fail("Failed with error: " + e.getMessage());
 		}
@@ -54,6 +54,7 @@ public class CreateReservationTests extends BaseTest {
 	@Test
 	public void PurchaseWithJustRequiredFieldsTest() throws Exception {
 		try {
+			logger.info("============ Starting Test: " + objTestName.getMethodName() + " ===========");
 			pgHome = new HomePage(driver);
 			pgReservation = new ReservationPage(driver);	
 			pg2Reservation = new ReservationPage2(driver);
@@ -70,8 +71,8 @@ public class CreateReservationTests extends BaseTest {
 			String toDay = "20";
 					
 			FlightDetails flightDetails = new FlightDetails.FlightDetailsBuilder(departingFrom, fromMonth, fromDay, arrivingIn, toMonth, toDay)
-					.isRoundTrip(false)  //optional field
-					.noOfPassengers("3")  //optional field
+					.isRoundTrip(isRoundTrip)  //optional field
+					.noOfPassengers(noOfPassengers)  //optional field
 					.build();
 			
 			String passengerFirstName = "Eric";
@@ -92,8 +93,8 @@ public class CreateReservationTests extends BaseTest {
 			pgPurchase.securePurchase();
 			
 			Assert.assertTrue("FlightC Confirmation # label NOT displayed", pgConfirmation.isFlightConfirmationNoDisplayed());
-			pgConfirmation.logout();
-			BaseTest.getLogger().info("========= Test Completed Successfully ===============");
+			//pgConfirmation.logout();
+			logger.info("========= Test Completed Successfully ===============");
 		} catch (Exception e) {
 			throw new Exception("Failed with error: " + e.getMessage(), e);
 		}
